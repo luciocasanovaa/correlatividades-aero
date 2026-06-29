@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Correlatividades — Ing. Aeroespacial UTN · Plan 2023</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+
+    <div class="logo-mark">
+      <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="19,2 36,14 30,36 8,36 2,14" fill="#4f8ef7" opacity="0.15"/>
+        <polygon points="19,2 36,14 30,36 8,36 2,14" fill="none" stroke="#4f8ef7" stroke-width="1.5"/>
+        <polygon points="19,9 29,16 25,30 13,30 9,16" fill="none" stroke="#6dd5a8" stroke-width="1"/>
+        <circle cx="19" cy="19" r="3" fill="#4f8ef7"/>
+      </svg>
+    </div>
+
+    <div class="header-titles">
+      <h1>Ingeniería Aeroespacial · UTN</h1>
+      <p>PLAN 2023 · ORD. 1926/1927 · MAPA DE CORRELATIVIDADES</p>
+    </div>
+
+    <div class="stats-bar">
+      <div class="stat">
+        <div class="stat-num done" id="count-done">0</div>
+        <div class="stat-label">Aprobadas</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num pending" id="count-pending">0</div>
+        <div class="stat-label">Final pend.</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num avail" id="count-avail">0</div>
+        <div class="stat-label">Disponibles</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num total">50</div>
+        <div class="stat-label">Total</div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="prog-fill" style="width:0%"></div>
+        </div>
+        <div class="progress-pct" id="prog-pct">0%</div>
+      </div>
+      <button class="btn-reset" onclick="resetAll()">Reiniciar</button>
+    </div>
+
+  </div>
+</header>
+
+<div class="legend">
+  <div class="legend-item">
+    <div class="legend-dot locked"></div>
+    Bloqueada
+  </div>
+  <div class="legend-sep"></div>
+  <div class="legend-item">
+    <div class="legend-dot avail"></div>
+    Disponible para cursar
+  </div>
+  <div class="legend-sep"></div>
+  <div class="legend-item">
+    <div class="legend-dot pending"></div>
+    Final pendiente — desbloquea correlativas
+  </div>
+  <div class="legend-sep"></div>
+  <div class="legend-item">
+    <div class="legend-dot done"></div>
+    Aprobada con final
+  </div>
+  <div class="legend-hint">Click: disponible → final pend. → aprobada → desmarcar</div>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn active" data-tab="board" onclick="switchTab('board')">🗂 Tablero</button>
+  <button class="tab-btn" data-tab="diagram" onclick="switchTab('diagram')">🕸 Diagrama de correlatividades</button>
+</div>
+
+<main id="main-container" class="tab-view active"></main>
+
+<section id="diagram-view" class="tab-view diagram-view">
+  <div class="diagram-toolbar">
+    <div class="diagram-legend">
+      <span class="dleg-item"><span class="dleg-line solid"></span> debe estar cursada</span>
+      <span class="dleg-item"><span class="dleg-line dashed"></span> debe estar aprobada (final)</span>
+    </div>
+    <div class="diagram-hint">Pasá el mouse sobre una materia para ver qué desbloquea</div>
+  </div>
+  <div id="diagram-scroll">
+    <div id="diagram-container"></div>
+  </div>
+</section>
+
+<div id="toast"></div>
+
+<canvas id="confetti-canvas"></canvas>
+
+<div id="easter-egg" role="dialog" aria-modal="true" aria-label="Felicitaciones">
+  <div class="ee-stars">★ ★ ★ ★ ★</div>
+  <div class="ee-hearts">❤️</div>
+  <div class="ee-title">
+    Te felicito mi vida,<br>
+    <span>terminaste la carrera</span> ❤️
+  </div>
+  <div class="ee-sub">
+    50 materias aprobadas. Ingeniera Aeroespacial.<br>
+    Estoy muy orgulloso de vos.
+  </div>
+  <div class="ee-hearts">🎉</div>
+  <button class="btn-ee-close" onclick="closeEasterEgg()">Cerrar y seguir mirando el mapa</button>
+</div>
+
+<footer>
+  UTN · Ordenanza N° 1927 · Plan 2023 · Las correlatividades son para cursar — el estado se guarda automáticamente en el navegador
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
